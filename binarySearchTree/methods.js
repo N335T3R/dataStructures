@@ -214,3 +214,42 @@ function insert (node, value) {
         else node.left = new Node(value);
     }
 }
+
+
+// deletes value from BST, preserving all
+// children
+function deleteItem (node, value) {
+    let current = node;
+    let previous;
+
+    while (value !== current.data) {
+        if (value < current.data) {
+            previous = current;
+            current = current.left;
+        } else if (value > current.data) {
+            previous = current;
+            current = current.right;
+        }
+    }
+
+    if (current.left && current.right) {
+        let next = current.right;
+
+        while (next.left) {
+            previous = next;
+            next = next.left;
+        }
+        // console.log(next, current, previous);
+
+        current.data = next.data;
+
+        if (next.right) next.right = previous.left;
+        else previous.left = null;
+    } else if (current.left) {
+        let next = current.left;
+        previous.left = next;
+    } else if (current.right) {
+        let next = current.right;
+        previous.right = current.right;
+    }
+}
