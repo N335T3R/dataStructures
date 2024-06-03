@@ -72,3 +72,50 @@ console.log(tree);
 
 
 
+
+function inorder (node) {
+    if (!node.left && !node.right) {
+        return node.data;
+    }
+
+    var output = [];
+
+    if (node.left) {
+        const left = inorder(node.left);
+
+        // at first return, value will be number
+        // after, will be array
+        if (typeof left === "number") {
+            output.push(left);
+        } else if ( typeof left === "object") {
+            left.forEach(Number => {
+                output.push(Number);
+            });
+        }
+    }
+
+
+    output.push(node.data);
+    
+
+    
+    if (node.right) {
+        const right = inorder(node.right);
+
+        // at first return, value will be number
+        // after, will be array
+        if (typeof right === "number") {
+            output.push(right);
+        } else if ( typeof right === "object") {
+            right.forEach(Number => {
+                output.push(Number);
+            });
+        }
+    }
+
+
+    return output;
+}
+
+const post = inorder(tree);
+console.log(post);
