@@ -40,8 +40,6 @@ function preorder (node) {
 }
 
 
-
-
 // returns array from traversal BST in the order:
 // left, right, data
 function postorder (node) {
@@ -83,8 +81,6 @@ function postorder (node) {
 }
 
 
-
-
 // returns sorted array from BST traversal in the order:
 // left, data, right
 function inorder (node) {
@@ -110,7 +106,6 @@ function inorder (node) {
 
 
     output.push(node.data);
-    
 
     
     if (node.right) {
@@ -130,8 +125,6 @@ function inorder (node) {
 
     return output;
 }
-
-
 
 
 
@@ -199,3 +192,25 @@ function find(Node, value) {
     return current;
 }
 
+
+// if value is not already found in BST,
+// adds value to tree as a new Node leaf
+function insert (node, value) {
+    if (node.left && node.right) {
+        if (value < node.data) {
+            insert (node.left, value);
+        } else if (value > node.data) {
+            insert (node.right, value);
+        }
+    }
+    
+    if (value === node.data) {
+        return;
+    } else if (value > node.data) {
+        if (node.right) insert (node.right, value)
+        else node.right = new Node(value);
+    } else if (value < node.data) {
+        if (node.left) insert (node.left, value);
+        else node.left = new Node(value);
+    }
+}
