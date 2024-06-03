@@ -70,10 +70,3 @@ function binarySearchTree (array) {
 var tree = binarySearchTree(myArray);
 console.log(tree);
 
-
-
-
-
-
-
-

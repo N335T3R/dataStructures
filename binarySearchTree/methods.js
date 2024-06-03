@@ -245,11 +245,30 @@ function deleteItem (node, value) {
 
         if (next.right) next.right = previous.left;
         else previous.left = null;
-    } else if (current.left) {
-        let next = current.left;
-        previous.left = next;
-    } else if (current.right) {
-        let next = current.right;
-        previous.right = current.right;
+    } 
+    
+    
+    if (current.data < previous.data) {
+        if (current.left) {
+            let next = current.left;
+            previous.left = next;
+        } else if (current.right) {
+            let next = current.right;
+            previous.left = current.right;
+        } else {
+            previous.left = null;
+        }
+    }
+    
+    if (current.data > previous.data) {
+        if (current.left) {
+            let next = current.left;
+            previous.right = next;
+        } else if (current.right) {
+            let next = current.right;
+            previous.right = current.right;
+        } else {
+            previous.right = null;
+        }
     }
 }
