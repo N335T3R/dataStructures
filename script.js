@@ -70,3 +70,51 @@ function binarySearchTree (array) {
 var tree = binarySearchTree(myArray);
 console.log(tree);
 
+
+
+const ordered = inorder(tree);
+console.log(ordered);
+
+
+
+
+class Queue {
+    constructor () {
+        this.queue = [];
+    }
+
+    enqueue(item) {
+        this.queue.push(item);
+    }
+
+    dequeue() {
+        return this.queue.shift();
+    }
+
+    isEmpty() {
+        return this.queue.length === 0;
+    }
+}
+
+
+
+function levelOrder (node) {
+    var queue = new Queue();
+    var ordered = [];
+
+    queue.enqueue(node);
+
+    while (!queue.isEmpty()) {
+        var current = queue.dequeue();
+
+        ordered.push(current.data);
+        
+        if (current.left) queue.enqueue(current.left);
+        if (current.right) queue.enqueue(current.right);
+    }
+
+    return ordered;
+}
+
+const leveled = levelOrder(tree);
+console.log(leveled);

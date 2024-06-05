@@ -127,6 +127,25 @@ function inorder (node) {
 }
 
 
+// returns array from BST traversed breadth-first
+function levelOrder (node) {
+    var queue = new Queue();
+    var ordered = [];
+
+    queue.enqueue(node);
+
+    while (!queue.isEmpty()) {
+        var current = queue.dequeue();
+
+        ordered.push(current.data);
+        
+        if (current.left) queue.enqueue(current.left);
+        if (current.right) queue.enqueue(current.right);
+    }
+
+    return ordered;
+}
+
 
 // returns TRUE if tree contains value; 
 // or returns FALSE
