@@ -192,6 +192,28 @@ function depth (node, value) {
 }
 
 
+// returns height of given node
+function height(node) {
+    if (!node.left && !node.right) return 0;
+
+    var left = 0;
+    var right = 0;
+
+    if (node.left) {
+        left = height(node.left);
+    }
+    if (node.right) {
+        right = height(node.right);
+    }
+
+    var count = 1;
+    count = count + left;
+    count = count + right;
+
+    return count;
+}
+
+
 // returns a Node containing value;
 // or returns UNDEFINED
 function find(Node, value) {
@@ -290,4 +312,28 @@ function deleteItem (node, value) {
             previous.right = null;
         }
     }
+}
+
+
+// calculates height of node's right & left subtrees
+// if height difference <= 1, returns true; 
+// else returns false
+function isBalanced (node) {
+    if (!node.left && !node.right) return 0;
+
+    const left = height(node.left);
+    const right = height(node.right);
+
+    if (right - left >= -1 && right - left <= 1) return true;
+    else return false;
+}
+
+
+// rebalances BST by converting back into array &
+// rebuilding array into tree
+function rebalance (node) {
+    var ordered = inorder(node);
+    var tree = binarySearchTree(ordered);
+
+    return tree;
 }
